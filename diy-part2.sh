@@ -12,3 +12,20 @@
 
 # Modify default IP
 #sed -i 's/192.168.1.1/192.168.50.5/g' package/base-files/files/bin/config_generate
+
+# patch aria2 from 16 threads to 128 threads
+mkdir -p feeds/packages/net/aria2/patches
+
+cat << EOF > feeds/packages/net/aria2/patches/001-lifting-thread-restrictions.patch
+--- a/src/OptionHandlerFactory.cc
++++ b/src/OptionHandlerFactory.cc
+@@ -440,7 +440,7 @@ std::vector<OptionHandler*> OptionHandle
+   {
+     OptionHandler* op(new NumberOptionHandler(PREF_MAX_CONNECTION_PER_SERVER,
+                                               TEXT_MAX_CONNECTION_PER_SERVER,
+-                                              "1", 1, 16, 'x'));
++                                              "1", 1, 128, 'x'));
+     op->addTag(TAG_BASIC);
+     op->addTag(TAG_FTP);
+     op->addTag(TAG_HTTP);
+EOF
