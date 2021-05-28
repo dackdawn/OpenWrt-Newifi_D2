@@ -29,3 +29,10 @@ cat << EOF > feeds/packages/net/aria2/patches/001-lifting-thread-restrictions.pa
      op->addTag(TAG_FTP);
      op->addTag(TAG_HTTP);
 EOF
+
+# add luci-app-adguardhome
+# git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/luci-app-adguardhome
+
+# fix path bug in adguardhome from kenzo
+sed -i "s/^include ..\/..\/lang\/golang\/golang-package.mk$/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g" feeds/kenzo/adguardhome/Makefile
+
