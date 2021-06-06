@@ -34,5 +34,6 @@ EOF
 # git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package/luci-app-adguardhome
 
 # fix path bug in adguardhome from kenzo
-sed -i "s/^include ..\/..\/lang\/golang\/golang-package.mk$/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g" feeds/kenzo/adguardhome/Makefile
+# This is no longer needed now.
+# sed -i "s/^include ..\/..\/lang\/golang\/golang-package.mk$/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang-package.mk/g" feeds/kenzo/adguardhome/Makefile
 
